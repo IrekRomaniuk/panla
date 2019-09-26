@@ -30,6 +30,13 @@ docker login
 docker tag web2la irom77/web2la
 docker push irom77/web2la
 ```
+## Kubernetes
+
+```
+kubectl apply -f k8s_web2la
+
+```
+
 ## Testing
 
 ## curl
