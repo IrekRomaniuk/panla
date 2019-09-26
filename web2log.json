@@ -1,0 +1,4 @@
+
+{"Type":"$type","Subtype":"$subtype","Source":"$src","Destination":"$dst","Port":"$dport","Application":"$app","Action":"$action","Device":"$device_name","Severity":"$severity"}
+
+{"Type":"$type","Subtype":"$subtype","Source":"$src","Destination":"$dst","Port":"$dport","Application":"$app","Action":"$action","Device":"$device_name","Severity":"$severity","Threat":"$threatid","Category":"$thr_category"}

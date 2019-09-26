@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web2la
+  labels:
+        app: web2la
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web2la
+  template:
+    metadata:
+      name: web2la
+      labels:
+        app: web2la     
+    spec:
+      containers:
+      - name: panlogs
+        image: irom77/web2la
+        env:
+        - name: PORT
+          value: "8514"
+        - name: URL
+          value: "\api"  
+        - name: DEBUG
+          value: "True"  
+        - name: LOG_TYPE
+          value: "PanLogsTestB"  
+        - name: CUSTOMER_ID
+          valueFrom:
+            configMapKeyRef:
+              name: panlogs-config
+              key: CUSTOMER_ID
+        - name: SHARED_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: panlogs-config
+              key: SHARED_KEY      
+        imagePullPolicy: Always #IfNotPresent
+        ports:
+        - containerPort: 8514
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  name: web2la
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  labels:
+    app: web2la
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.4.1.99
+  ports:
+  - protocol: TCP
+    port: 8514
+    name: web2la
+  selector:
+    app: web2la       

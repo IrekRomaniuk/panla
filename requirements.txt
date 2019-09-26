@@ -1,0 +1,3 @@
+azure-log-analytics-data-collector-api
+requests
+flask

@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sys2la
+  labels:
+        app: sys2la
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sys2la
+  template:
+    metadata:
+      name: sys2la
+      labels:
+        app: sys2la     
+    spec:
+      containers:
+      - name: panlogs
+        image: irom77/sys2la
+        env:
+        - name: SYSLOG_PORT
+          value: "6514"
+        - name: LOG_TYPE
+          value: "PanLogsTest"  
+        - name: CUSTOMER_ID
+          valueFrom:
+            configMapKeyRef:
+              name: panlogs-config
+              key: CUSTOMER_ID
+        - name: SHARED_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: panlogs-config
+              key: SHARED_KEY      
+        imagePullPolicy: Always #IfNotPresent
+        ports:
+        - containerPort: 6514
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  name: sys2la
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  labels:
+    app: sys2la
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.4.1.100
+  ports:
+  - protocol: UDP
+    port: 6514
+    name: sys2la
+  selector:
+    app: sys2la       
