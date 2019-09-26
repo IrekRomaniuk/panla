@@ -34,6 +34,7 @@ docker push irom77/web2la
 
 ```
 kubectl apply -f k8s_web2la
+kubectl scale --replicas=3 deployment/web2la
 
 ```
 
@@ -57,11 +58,4 @@ locust --host=http://10.4.1.99:8514 -f web2la_test.py --no-web -c 10 -r 1000 -t 
 
 docker@ubuntu-home:~$ /home/docker/.local/bin/locust --host=http://10.4.1.99:8514 -f ./web2py_test.py --no-web -c 10 -r 1000 -t 300s --only-summary
 
-```
-
-
-### k8s
-
-```
-kubectl scale --replicas=3 deployment/web2la
 ```
