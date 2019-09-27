@@ -12,20 +12,8 @@ HOST, PORT, DEBUG, URL = "0.0.0.0", int(os.environ["PORT"]), os.environ['DEBUG']
 log_type = os.environ['LOG_TYPE'].rstrip("\n\r") # 'SyslogTest'
 customer_id = os.environ['CUSTOMER_ID'].rstrip("\n\r")
 shared_key = os.environ['SHARED_KEY'].rstrip("\n\r")
-#fieldnames = ("Type","Subtype","Source","Destination","Port","Application","Action")
 app = Flask(__name__)
 api = client.DataCollectorAPIClient(customer_id,shared_key)
-@app.route('/threats', methods=['GET', 'POST']) #, methods=['POST']) #GET requests will be blocked
-def handle_threats():
-    if request.is_json:
-        req_data = request.get_json()
-        #print("{}".format(req_data))
-        #print("{0} {1} {2}".format(req_data["Source"],req_data["Destination"],req_data["Port"]))
-        response = api.post_data(log_type, req_data)
-        #print("Status code: {}".format(response.status_code))
-        return "{}".format(response.status_code)
-    else:
-        return "{}".format("Request is not JSON")    
 @app.route(URL, methods=['GET', 'POST']) #, methods=['POST']) #GET requests will be blocked
 def handle():
     if request.is_json:

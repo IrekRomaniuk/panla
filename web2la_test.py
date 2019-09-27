@@ -9,7 +9,7 @@ class UserBehavior(TaskSet):
     def create_post(self):
         headers = {'content-type': 'application/json'}
         self.client.post("/threats",data= json.dumps({
-      "Type": "TESTPERFE",
+      "Type": "TESTPERFAZURE",
       "Source": "E11.222.111.222",
       "Destination": "E22.111.222.111",
       "Port": "12345"

@@ -22,7 +22,7 @@ spec:
         - name: PORT
           value: "8514"
         - name: URL
-          value: "\api"  
+          value: "/api"  
         - name: DEBUG
           value: "True"  
         - name: LOG_TYPE
