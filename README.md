@@ -13,6 +13,7 @@ docker run -d --name web2la \
 docker login
 docker tag web2la irom77/web2la
 docker push irom77/web2la
+```
 
 ### web2bus
 
