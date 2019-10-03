@@ -14,7 +14,7 @@ docker login
 docker tag web2la irom77/web2la
 docker push irom77/web2la
 
-### web2la
+### web2bus
 
 ```
 docker build -t web2bus .
