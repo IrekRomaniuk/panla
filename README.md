@@ -39,7 +39,7 @@ kubectl scale --replicas=3 deployment/web2la
 ## Testing
 
 ## curl
-e
+
 ```
 curl -d '{"Type":"TEST","Subtype":"subtype","Source":"1.1.1.1","Destination":"1.1.1.2","Port":"Port","Application":"Application","Action":"Action"}' -H "Content-Type: application/json" -X POST http://localhost:8514/api
 
