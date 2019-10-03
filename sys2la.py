@@ -12,6 +12,7 @@ log_type = os.environ['LOG_TYPE'].rstrip("\n\r") # 'SyslogTest'
 customer_id = os.environ['CUSTOMER_ID'].rstrip("\n\r")
 shared_key = os.environ['SHARED_KEY'].rstrip("\n\r")
 fieldnames = ("Type","Subtype","Source","Destination","Port","Application","Action")
+api = client.DataCollectorAPIClient(customer_id,shared_key)
 # "$type","$subtype","$src","$dst","$dport","$app","$action"
 # https://docs.python.org/3/library/socketserver.html
 class SyslogUDPHandler(socketserver.BaseRequestHandler):
@@ -23,7 +24,6 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
         print( "{0} {1} {2}".format(json_data["Source"],json_data["Destination"],json_data["Port"]))
         #body = json.dumps(json_data)
         #post_data(customer_id, shared_key, body, log_type)  
-        api = client.DataCollectorAPIClient(customer_id,shared_key) 
         response = api.post_data(log_type, json_data)
         if (helper.is_success(response.status_code)):
             print( 'Succeeded in posting data to Data Collector API!!')

@@ -6,4 +6,4 @@ WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 ENTRYPOINT [ "python" ]
-CMD [ "web2la.py"]
+CMD [ "web2bus.py"]

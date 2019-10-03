@@ -37,7 +37,7 @@ spec:
             configMapKeyRef:
               name: panlogs-config
               key: SHARED_KEY      
-        imagePullPolicy: Always #IfNotPresent
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8514
 ---    
